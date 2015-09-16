@@ -45,29 +45,85 @@
                 });
             });
 
-            slickItem.find('[data-animation-out]').each(function () {
-                var dataAnimationOut = $(this);
-
-                var animationOut = dataAnimationOut.attr('data-animation-out');
-
-                console.log(animationOut);
-            });
-
             slickItem.find('[data-delay-in]').each(function () {
                 var dataDelayIn = $(this);
 
                 var delayIn = dataDelayIn.attr('data-delay-in');
 
                 console.log(delayIn);
+
+                function slickAddDelayIn() {
+                    dataDelayIn.css({
+                       'animation-delay' : delayIn + 's',
+                       '-webkit-animation-delay' : delayIn + 's',
+                       '-moz-animation-delay' : delayIn + 's',
+                       '-o-animation-delay' : delayIn + 's',
+                       '-ms-animation-delay' : delayIn + 's'
+                    });
+                }
+
+                var firstSlickItem = currentSlickSlider.find('[data-slick-index="0"]');
+                if (firstSlickItem.length > 0) {
+                    slickAddDelayIn();
+                }
+
+                currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
+                    slickAddDelayIn();
+                });
+
+                currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
+                    slickAddDelayIn();
+                });
             });
 
-            slickItem.find('[data-delay-out]').each(function () {
-                var dataDelayOut = $(this);
+            slickItem.find('[data-duration-in]').each(function(){
+               var dataDurationIn = $(this);
 
-                var delayOut = dataDelayOut.attr('data-delay-out');
+                var durationIn = dataDurationIn.attr('data-duration-in');
 
-                console.log(delayOut);
+                console.log(durationIn)
+
+                function slickAddDurationIn() {
+                    dataDurationIn.css({
+                        'animation-duration' : durationIn + 's',
+                        '-webkit-animation-duration' : durationIn + 's',
+                        '-moz-animation-duration' : durationIn + 's',
+                        '-o-animation-duration' : durationIn + 's',
+                        '-ms-animation-duration' : durationIn + 's'
+                    });
+                }
+
+                var firstSlickItem = currentSlickSlider.find('[data-slick-index="0"]');
+                if (firstSlickItem.length > 0) {
+                    slickAddDurationIn();
+                }
+
+                currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
+                    slickAddDurationIn();
+                });
+
+                currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
+                    slickAddDurationIn();
+                });
+
             });
+
+            /*
+            // Animation out is coming soon
+
+             slickItem.find('[data-animation-out]').each(function () {
+             var dataAnimationOut = $(this);
+
+             var animationOut = dataAnimationOut.attr('data-animation-out');
+             });
+
+             slickItem.find('[data-delay-out]').each(function () {
+             var dataDelayOut = $(this);
+
+             var delayOut = dataDelayOut.attr('data-delay-out');
+             });
+             */
+
         });
         return this;
     }
