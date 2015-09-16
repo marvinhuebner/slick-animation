@@ -17,7 +17,7 @@
                 var dataAnimationIn = $(this);
                 dataAnimationIn.css('opacity', '0');
 
-                animationIn = dataAnimationIn.attr('data-animation-in');
+                var animationIn = dataAnimationIn.attr('data-animation-in');
 
                 function slickAddAnimationIn() {
                     dataAnimationIn.addClass(animationIn);
@@ -50,8 +50,6 @@
 
                 var delayIn = dataDelayIn.attr('data-delay-in');
 
-                console.log(delayIn);
-
                 function slickAddDelayIn() {
                     dataDelayIn.css({
                        'animation-delay' : delayIn + 's',
@@ -80,8 +78,6 @@
                var dataDurationIn = $(this);
 
                 var durationIn = dataDurationIn.attr('data-duration-in');
-
-                console.log(durationIn)
 
                 function slickAddDurationIn() {
                     dataDurationIn.css({
