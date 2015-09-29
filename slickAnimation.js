@@ -19,7 +19,7 @@
 
                 var animationIn = self.attr('data-animation-in');
                 var animationOut = self.attr('data-animation-out');
-
+                
                 if(self.attr('data-animation-out')) {
 
                     function slickAddAnimationIn() {
@@ -44,7 +44,29 @@
                         self.css('opacity', '0');
                     }
 
-                    var defaultTimeout = 1000;
+                    var defaultTimeout = '';
+
+                    if (self.attr('data-delay-in')) {
+                        var timeoutDelayInOnly = self.attr('data-delay-in') * 1000 + 1000;
+
+                        defaultTimeout = timeoutDelayInOnly;
+
+                    } else if (self.attr('data-duration-in')) {
+                        var timeoutDurationInOnly = self.attr('data-duration-in') * 1000;
+
+                        defaultTimeout = timeoutDurationInOnly;
+
+                    } else if ((self.attr('data-delay-in')) || (self.attr('data-duration-in'))) {
+                        var timeoutDelayIn = self.attr('data-delay-in') * 1000;
+                        var timeoutDurationIn = self.attr('data-duration-in') * 1000;
+
+                        defaultTimeout = timeoutDelayIn + timeoutDurationIn;
+                    }
+                    else {
+                        defaultTimeout = 1000;
+                    }
+
+                    console.log(defaultTimeout);
 
                     if (firstSlickItem.length > 0) {
                         slickAddAnimationIn();
