@@ -8,50 +8,102 @@
         var currentSlickSlider = $(this);
 
         var slickItems = currentSlickSlider.find('.slick-list .slick-track > div');
-
+        var firstSlickItem = currentSlickSlider.find('[data-slick-index="0"]');
 
         slickItems.each(function () {
             var slickItem = $(this);
 
             slickItem.find('[data-animation-in]').each(function () {
-                var dataAnimationIn = $(this);
-                dataAnimationIn.css('opacity', '0');
+                var self = $(this);
+                self.css('opacity', '0');
 
-                var animationIn = dataAnimationIn.attr('data-animation-in');
+                var animationIn = self.attr('data-animation-in');
+                var animationOut = self.attr('data-animation-out');
 
-                function slickAddAnimationIn() {
-                    dataAnimationIn.addClass(animationIn);
-                    dataAnimationIn.addClass('animated');
-                    dataAnimationIn.css('opacity', '1');
+                if(self.attr('data-animation-out')) {
+
+                    function slickAddAnimationIn() {
+                        self.addClass(animationIn);
+                        self.addClass('animated');
+                        self.css('opacity', '1');
+                    }
+
+                    function slickRemoveAnimationIn() {
+                        self.removeClass(animationIn);
+                        self.removeClass('animated');
+                    }
+
+                    function slickAddAnimationOut() {
+                        self.addClass(animationOut);
+                        self.addClass('animated');
+                    }
+
+                    function slickRemoveAnimationOut() {
+                        self.removeClass(animationOut);
+                        self.removeClass('animated');
+                        self.css('opacity', '0');
+                    }
+
+                    var defaultTimeout = 1000;
+
+                    if (firstSlickItem.length > 0) {
+                        slickAddAnimationIn();
+
+                        setTimeout(function(){
+                            slickRemoveAnimationIn();
+                            slickAddAnimationOut();
+                        }, defaultTimeout);
+                    }
+
+                    currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
+                        slickAddAnimationIn();
+
+                        setTimeout(function(){
+                            slickRemoveAnimationIn();
+                            slickAddAnimationOut();
+                        }, defaultTimeout);
+                    });
+
+                    currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
+                        slickRemoveAnimationOut();
+                    });
+
                 }
 
-                function slickRemoveAnimationIn() {
-                    dataAnimationIn.removeClass(animationIn);
-                    dataAnimationIn.removeClass('animated');
-                    dataAnimationIn.css('opacity', '0');
+                else {
+                    function slickAddAnimationInDefault() {
+                        self.addClass(animationIn);
+                        self.addClass('animated');
+                        self.css('opacity', '1');
+                    }
+
+                    function slickRemoveAnimationInDefault() {
+                        self.removeClass(animationIn);
+                        self.removeClass('animated');
+                        self.css('opacity', '0');
+                    }
+
+                    if (firstSlickItem.length > 0) {
+                        slickAddAnimationInDefault();
+                    }
+
+                    currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
+                        slickAddAnimationInDefault();
+                    });
+
+                    currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
+                        slickRemoveAnimationInDefault();
+                    });
                 }
-
-                var firstSlickItem = currentSlickSlider.find('[data-slick-index="0"]');
-                if (firstSlickItem.length > 0) {
-                    slickAddAnimationIn();
-                }
-
-                currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
-                    slickAddAnimationIn();
-                });
-
-                currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
-                    slickRemoveAnimationIn();
-                });
             });
 
             slickItem.find('[data-delay-in]').each(function () {
-                var dataDelayIn = $(this);
+                var self = $(this);
 
-                var delayIn = dataDelayIn.attr('data-delay-in');
+                var delayIn = self.attr('data-delay-in');
 
                 function slickAddDelayIn() {
-                    dataDelayIn.css({
+                    self.css({
                        'animation-delay' : delayIn + 's',
                        '-webkit-animation-delay' : delayIn + 's',
                        '-moz-animation-delay' : delayIn + 's',
@@ -60,7 +112,6 @@
                     });
                 }
 
-                var firstSlickItem = currentSlickSlider.find('[data-slick-index="0"]');
                 if (firstSlickItem.length > 0) {
                     slickAddDelayIn();
                 }
@@ -75,12 +126,12 @@
             });
 
             slickItem.find('[data-duration-in]').each(function(){
-               var dataDurationIn = $(this);
+               var self = $(this);
 
-                var durationIn = dataDurationIn.attr('data-duration-in');
+                var durationIn = self.attr('data-duration-in');
 
                 function slickAddDurationIn() {
-                    dataDurationIn.css({
+                    self.css({
                         'animation-duration' : durationIn + 's',
                         '-webkit-animation-duration' : durationIn + 's',
                         '-moz-animation-duration' : durationIn + 's',
@@ -89,7 +140,6 @@
                     });
                 }
 
-                var firstSlickItem = currentSlickSlider.find('[data-slick-index="0"]');
                 if (firstSlickItem.length > 0) {
                     slickAddDurationIn();
                 }
@@ -103,22 +153,6 @@
                 });
 
             });
-
-            /*
-            // Animation out is coming soon
-
-             slickItem.find('[data-animation-out]').each(function () {
-             var dataAnimationOut = $(this);
-
-             var animationOut = dataAnimationOut.attr('data-animation-out');
-             });
-
-             slickItem.find('[data-delay-out]').each(function () {
-             var dataDelayOut = $(this);
-
-             var delayOut = dataDelayOut.attr('data-delay-out');
-             });
-             */
 
         });
         return this;
