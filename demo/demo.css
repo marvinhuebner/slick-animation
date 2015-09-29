@@ -1,36 +1,76 @@
+body {
+  background-color: deepskyblue;
+  margin: 0px;
+
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+.headline {
+  text-align: center;
+  margin:30px 0px 90px 0px;
+}
+
 #content {
-  width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
+  padding: 0px 30px;
 }
 
 .slick-slider {
-  background-color: grey;
-  padding: 30px;
+  background-color: white;
+  padding: 15px;
 }
+
+.slick-slider-init {
+  position: relative;
+}
+
+.slick-prev {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.slick-next {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 
 .animated {
   animation-duration: 1s;
   animation-fill-mode: both;
 }
 
+/*
+    Animate.css examples
+    From: https://github.com/daneden/animate.css
+*/
+
 @keyframes bounceInDown {
   from, 60%, 75%, 90%, to {
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
+
   0% {
     opacity: 0;
     transform: translate3d(0, -3000px, 0);
   }
+
   60% {
     opacity: 1;
     transform: translate3d(0, 25px, 0);
   }
+
   75% {
     transform: translate3d(0, -10px, 0);
   }
+
   90% {
     transform: translate3d(0, 5px, 0);
   }
+
   to {
     transform: none;
   }
@@ -40,24 +80,36 @@
   animation-name: bounceInDown;
 }
 
-@keyframes bounceOutDown {
-  20% {
-    transform: translate3d(0, 10px, 0);
+@keyframes bounceInUp {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 
-  40%, 45% {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0);
+  }
+
+  60% {
     opacity: 1;
     transform: translate3d(0, -20px, 0);
   }
 
+  75% {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -5px, 0);
+  }
+
   to {
-    opacity: 0;
-    transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
-.bounceOutDown {
-  animation-name: bounceOutDown;
+.bounceInUp {
+  animation-name: bounceInUp;
 }
 
 @keyframes bounceOutUp {
@@ -78,4 +130,40 @@
 
 .bounceOutUp {
   animation-name: bounceOutUp;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+.shake {
+  animation-name: shake;
 }
