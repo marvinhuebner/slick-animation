@@ -27,12 +27,10 @@
          * @param visibility
          */
 
-        function slickSetAnimationDefault(obj, type, animationIn, animatedClass, visibility)
-        {
+        function slickSetAnimationDefault(obj, type, animationIn, animatedClass, visibility) {
             visibility = typeof visibility !== 'undefined' ? visibility : false;
 
-            if(type['opacity'] == 1)
-            {
+            if (type['opacity'] == 1) {
                 obj.addClass(animationIn);
                 obj.addClass(animatedClass);
             } else {
@@ -40,7 +38,7 @@
                 obj.removeClass(animatedClass);
             }
 
-            if(visibility) obj.css(type);
+            if (visibility) obj.css(type);
         }
 
         /**
@@ -50,8 +48,7 @@
          * @returns {number}
          */
 
-        function getTimeout(delayIn, durationIn)
-        {
+        function getTimeout(delayIn, durationIn) {
             if (delayIn) {
                 return delayIn * 1000 + 1000;
 
@@ -74,20 +71,19 @@
 
         function slickAddAnimation(obj, animation, value) {
             var delayInAttr = [
-                'animation-'+animation,
-                '-webkit-animation-'+animation,
-                '-moz-animation-'+animation,
-                '-o-animation-'+animation,
-                '-ms-animation-'+animation
+                'animation-' + animation,
+                '-webkit-animation-' + animation,
+                '-moz-animation-' + animation,
+                '-o-animation-' + animation,
+                '-ms-animation-' + animation
             ];
             var delayInAttributes = {};
-            delayInAttr.forEach(function(entry) {
+            delayInAttr.forEach(function (entry) {
 
-                delayInAttributes[entry] = value+'s';
+                delayInAttributes[entry] = value + 's';
             });
             obj.css(delayInAttributes);
         }
-
 
         slickItems.each(function () {
             var slickItem = $(this);
@@ -126,6 +122,7 @@
                                 slickAddAnimation(self, 'duration', durationOut);
                             }
                         }, getTimeout(delayIn, durationIn));
+
                     }
 
                     currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
@@ -137,6 +134,7 @@
                         if (durationIn) {
                             slickAddAnimation(self, 'duration', durationIn);
                         }
+
 
                         setTimeout(function () {
                             slickSetAnimationDefault(self, hidden, animationIn, animatedClass);
@@ -153,6 +151,7 @@
 
                     currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
                         slickSetAnimationDefault(self, hidden, animationOut, animatedClass, true);
+
                     });
                 }
 
@@ -165,7 +164,10 @@
                         }
                         if (durationIn) {
                             slickAddAnimation(self, 'duration', durationIn);
+
                         }
+
+
                     }
 
                     currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
@@ -183,9 +185,9 @@
                         slickSetAnimationDefault(self, hidden, animationIn, animatedClass, true);
                     });
                 }
+
             });
         });
-
         return this;
     }
 })(jQuery);
