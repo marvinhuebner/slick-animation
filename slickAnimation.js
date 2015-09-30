@@ -1,10 +1,10 @@
 /*
-    slickAnimation.js
+ slickAnimation.js
 
-    Version: 1.0.0
-    Author: Marvin Hübner
-    Docs: Available soon under https://github.com/marvinhuebner/slick-animation
-    Repo: https://github.com/marvinhuebner/slick-animation
+ Version: 0.0.0 Beta
+ Author: Marvin Hübner
+ Docs: Available soon under https://github.com/marvinhuebner/slick-animation
+ Repo: https://github.com/marvinhuebner/slick-animation
  */
 
 (function ($) {
@@ -14,8 +14,8 @@
         var slickItems = currentSlickSlider.find('.slick-list .slick-track > div');
         var firstSlickItem = currentSlickSlider.find('[data-slick-index="0"]');
         var animatedClass = 'animated';
-        var visible = {opacity : '1'};
-        var hidden = {opacity : '0'};
+        var visible = {opacity: '1'};
+        var hidden = {opacity: '0'};
 
         slickItems.each(function () {
             var slickItem = $(this);
@@ -32,55 +32,47 @@
                 var delayOut = self.attr('data-delay-out');
                 var durationOut = self.attr('data-duration-out');
 
-                if (delayIn) {
-                    function slickAddDelayIn() {
-                        self.css({
-                            'animation-delay' : delayIn + 's',
-                            '-webkit-animation-delay' : delayIn + 's',
-                            '-moz-animation-delay' : delayIn + 's',
-                            '-o-animation-delay' : delayIn + 's',
-                            '-ms-animation-delay' : delayIn + 's'
-                        });
-                    }
+                function slickAddDelayIn() {
+                    self.css({
+                        'animation-delay': delayIn + 's',
+                        '-webkit-animation-delay': delayIn + 's',
+                        '-moz-animation-delay': delayIn + 's',
+                        '-o-animation-delay': delayIn + 's',
+                        '-ms-animation-delay': delayIn + 's'
+                    });
                 }
 
-                if (durationIn) {
-                    function slickAddDurationIn() {
-                        self.css({
-                            'animation-duration' : durationIn + 's',
-                            '-webkit-animation-duration' : durationIn + 's',
-                            '-moz-animation-duration' : durationIn + 's',
-                            '-o-animation-duration' : durationIn + 's',
-                            '-ms-animation-duration' : durationIn + 's'
-                        });
-                    }
+                function slickAddDurationIn() {
+                    self.css({
+                        'animation-duration': durationIn + 's',
+                        '-webkit-animation-duration': durationIn + 's',
+                        '-moz-animation-duration': durationIn + 's',
+                        '-o-animation-duration': durationIn + 's',
+                        '-ms-animation-duration': durationIn + 's'
+                    });
                 }
 
-                if (delayOut) {
-                    function slickAddDelayOut() {
-                        self.css({
-                            'animation-delay' : delayOut + 's',
-                            '-webkit-animation-delay' : delayOut + 's',
-                            '-moz-animation-delay' : delayOut + 's',
-                            '-o-animation-delay' : delayOut + 's',
-                            '-ms-animation-delay' : delayOut + 's'
-                        });
-                    }
+                function slickAddDelayOut() {
+                    self.css({
+                        'animation-delay': delayOut + 's',
+                        '-webkit-animation-delay': delayOut + 's',
+                        '-moz-animation-delay': delayOut + 's',
+                        '-o-animation-delay': delayOut + 's',
+                        '-ms-animation-delay': delayOut + 's'
+                    });
                 }
 
-                if (durationOut) {
-                    function slickAddDurationOut() {
-                        self.css({
-                            'animation-duration' : durationOut + 's',
-                            '-webkit-animation-duration' : durationOut + 's',
-                            '-moz-animation-duration' : durationOut + 's',
-                            '-o-animation-duration' : durationOut + 's',
-                            '-ms-animation-duration' : durationOut + 's'
-                        });
-                    }
+                function slickAddDurationOut() {
+                    self.css({
+                        'animation-duration': durationOut + 's',
+                        '-webkit-animation-duration': durationOut + 's',
+                        '-moz-animation-duration': durationOut + 's',
+                        '-o-animation-duration': durationOut + 's',
+                        '-ms-animation-duration': durationOut + 's'
+                    });
                 }
 
-                if(animationOut) {
+                if (animationOut) {
 
                     function slickAddAnimationIn() {
                         self.addClass(animationIn);
@@ -128,27 +120,47 @@
 
                     if (firstSlickItem.length > 0) {
                         slickAddAnimationIn();
-                        slickAddDelayIn();
-                        slickAddDurationIn();
 
-                        setTimeout(function(){
+                        if (delayIn) {
+                            slickAddDelayIn();
+                        }
+                        if (durationIn) {
+                            slickAddDurationIn();
+                        }
+
+                        setTimeout(function () {
                             slickRemoveAnimationIn();
                             slickAddAnimationOut();
-                            slickAddDelayOut();
-                            slickAddDurationOut();
+
+                            if (delayOut) {
+                                slickAddDelayOut();
+                            }
+                            if (durationOut) {
+                                slickAddDurationOut();
+                            }
                         }, defaultTimeout);
                     }
 
                     currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
                         slickAddAnimationIn();
-                        slickAddDelayIn();
-                        slickAddDurationIn();
 
-                        setTimeout(function(){
+                        if (delayIn) {
+                            slickAddDelayIn();
+                        }
+                        if (durationIn) {
+                            slickAddDurationIn();
+                        }
+
+                        setTimeout(function () {
                             slickRemoveAnimationIn();
                             slickAddAnimationOut();
-                            slickAddDelayOut();
-                            slickAddDurationOut();
+
+                            if (delayOut) {
+                                slickAddDelayOut();
+                            }
+                            if (durationOut) {
+                                slickAddDurationOut();
+                            }
                         }, defaultTimeout);
                     });
 
@@ -172,14 +184,24 @@
 
                     if (firstSlickItem.length > 0) {
                         slickAddAnimationInDefault();
-                        slickAddDelayIn();
-                        slickAddDurationIn();
+
+                        if (delayIn) {
+                            slickAddDelayIn();
+                        }
+                        if (durationIn) {
+                            slickAddDurationIn();
+                        }
                     }
 
                     currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
                         slickAddAnimationInDefault();
-                        slickAddDelayIn();
-                        slickAddDurationIn();
+
+                        if (delayIn) {
+                            slickAddDelayIn();
+                        }
+                        if (durationIn) {
+                            slickAddDurationIn();
+                        }
                     });
 
                     currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
