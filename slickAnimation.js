@@ -1,7 +1,7 @@
 /*
  slickAnimation.js
 
- Version: 0.0.0 Beta
+ Version: 0.1.0 Beta
  Author: Marvin Hübner
  Docs: Available soon under https://github.com/marvinhuebner/slick-animation
  Repo: https://github.com/marvinhuebner/slick-animation
