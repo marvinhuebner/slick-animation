@@ -166,11 +166,10 @@
                             slickAddAnimation(self, 'duration', durationIn);
 
                         }
-
-
                     }
 
                     currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
+
                         slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
 
                         if (delayIn) {
