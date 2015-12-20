@@ -1,0 +1,28 @@
+{
+  "name": "slick-animation",
+  "description": "slick-animation is a jquery plugin to animate elements in the slick slider",
+  "authors": [
+    "Marvin Huebner"
+  ],
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "frontend",
+    "slick",
+    "slicer",
+    "js"
+  ],
+  "homepage": "https://github.com/marvinhuebner/slick-animation",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "slick-carousel": "~1.5.9",
+    "animate.css": "~3.5.0"
+  }
+}

@@ -64,15 +64,23 @@
     </div>
 </div>
 
+
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/slick-carousel/slick/slick.min.js"></script>
+
 <script type="text/javascript">
+    var sliderInit = $('.slick-slider-init');
+
+    $(document).ready(function () {
+
+        sliderInit.slick({
+            autoplay: false,
+            autoplaySpeed: 9000
+        });
+
+        sliderInit.slickAnimation();
+    });
 </script>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="../slick/slick.js"></script>
-<script src="../slickAnimation.js"></script>
-<script src="demo.js"></script>
-
 
 </body>
 </html>
