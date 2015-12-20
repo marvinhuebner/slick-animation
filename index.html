@@ -9,8 +9,57 @@
 
     <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="bower_components/animate.css/animate.css">
-    <link rel="stylesheet" href="slick-animation/slick-animation-demo.css">
 
+    <style>
+        body {
+            background-color: deepskyblue;
+            margin: 0px;
+
+            font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        }
+
+        .headline {
+            text-align: center;
+            margin:30px 0px 90px 0px;
+            color: white;
+        }
+
+        #content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0px 30px;
+        }
+
+        .slick-slider {
+            background-color: white;
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .slick-track {
+            overflow: hidden;
+        }
+
+        .slick-slider-init {
+            position: relative;
+        }
+
+        [data-animation-in] {
+            opacity: 0;
+        }
+
+        .slick-prev {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .slick-next {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
 
 </head>
 <body>
@@ -70,7 +119,7 @@
 
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="bower_components/slick-carousel/slick/slick.min.js"></script>
-<script type="text/javascript" src="slick-animation/slick-animation.js"></script>
+<script type="text/javascript" src="slick-animation.js"></script>
 
 <script type="text/javascript">
     var sliderInit = $('.slick-slider-init');
