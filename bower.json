@@ -25,7 +25,7 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
+  "Dependencies": {
     "slick-carousel": "~1.5.9",
     "animate.css": "~3.5.0"
   }
