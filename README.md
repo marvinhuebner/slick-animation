@@ -9,9 +9,11 @@
 - [slick](https://github.com/kenwheeler/slick/)
 - [animate.css](https://github.com/daneden/animate.css)
 
-### Installation
+### Version
 
-- you can use bower to install all
+`0.3.0 Beta`
+
+### Installation
 
 `bower install slick-animation`
 
