@@ -47,15 +47,15 @@ You have several options for the animation.
 ```
 
 ## Contribute
-<hr>
+
 This library is still in a beta phase, fell free to fork and make a pull request.
 
 ## Bug Tracker
-<hr>
+
 If you find a bug, please report it [here on Github!] (https://github.com/marvinhuebner/slick-animation/issues)
 
 ## Developer
-<hr>
+
 Developed by Marvin Hübner
 - [@Marvin_Huebner](https://twitter.com/Marvin_Huebner)
 - [Github Profile](https://github.com/marvinhuebner)
