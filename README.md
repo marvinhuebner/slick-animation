@@ -11,7 +11,7 @@
 
 ### Version
 
-`0.3.0 Beta`
+`0.3.1 Beta`
 
 ### Installation
 
