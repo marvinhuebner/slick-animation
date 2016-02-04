@@ -19,13 +19,13 @@
 
 - HTML
 
-```
+```html
 <div data-animation-in=„fadeIn“><div>
 ```
 
 - JavaScript
 
-```
+```js
 $(‚#your-slider’).slickAnimation();
 ``
 
@@ -42,7 +42,7 @@ You have several options for the animation.
 
 - HTML
 
-```
+```html
 <div data-animation-in="fadeIn" data-delay-in="2" data-duration-in="2" data-animation-out="fadeOUt" data-delay-out="2" data-duration-out="2"></div>
 ```
 
