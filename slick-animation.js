@@ -58,7 +58,6 @@
             } else if ((delayIn) || (durationIn)) {
                 return (delayIn * 1000) + (durationIn * 1000);
             }
-
             return 1000;
         }
 
