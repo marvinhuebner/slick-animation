@@ -1,7 +1,7 @@
 # slick-animation
 <hr>
 
-`slick-animation’ let´s you easy animate your elements which are contained in your [Slick](https://github.com/kenwheeler/slick/).
+`slick-animation` let´s you easy animate your elements which are contained in your [Slick](https://github.com/kenwheeler/slick/).
 
 ## Documentation
 <hr>
