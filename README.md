@@ -27,7 +27,7 @@
 
 ```js
 $(‚#your-slider’).slickAnimation();
-``
+``` 
 
 ### Advanced Usage
 
