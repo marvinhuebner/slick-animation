@@ -11,7 +11,7 @@
 
 ### Version
 
-`0.3.1 Beta`
+`0.3.2 Beta
 
 ### Installation
 
@@ -25,11 +25,23 @@
 <div data-animation-in=„fadeIn“><div>
 ```
 
+- CSS
+
+Add the following css to your css files:
+
+```css
+#your-slider [data-animation-in] {
+    opacity: 0;
+}
+```
+
 - JavaScript
 
 ```js
 $(‚#your-slider’).slickAnimation();
 ``` 
+
+_Replace `#your-slider´ with your own id oder class._
 
 ### Advanced Usage
 
