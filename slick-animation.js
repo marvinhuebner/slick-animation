@@ -30,6 +30,9 @@
         function slickSetAnimationDefault(obj, type, animationIn, animatedClass, visibility) {
             visibility = typeof visibility !== 'undefined' ? visibility : false;
 
+            slickRemoveAnimation(obj, 'delay');
+            slickRemoveAnimation(obj, 'duration');
+
             if (type['opacity'] == 1) {
                 obj.addClass(animationIn);
                 obj.addClass(animatedClass);
@@ -152,7 +155,6 @@
 
                     currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
                         if (slickItem.hasClass('slick-current')) {
-
 
                             slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
 
