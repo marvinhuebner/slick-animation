@@ -30,6 +30,9 @@
         function slickSetAnimationDefault(obj, type, animationIn, animatedClass, visibility) {
             visibility = typeof visibility !== 'undefined' ? visibility : false;
 
+            slickRemoveAnimation(obj, 'delay');
+            slickRemoveAnimation(obj, 'duration');
+
             if (type['opacity'] == 1) {
                 obj.addClass(animationIn);
                 obj.addClass(animatedClass);
@@ -67,7 +70,6 @@
          * @param animation
          * @param value
          */
-
         function slickAddAnimation(obj, animation, value) {
             var delayInAttr = [
                 'animation-' + animation,
@@ -80,6 +82,27 @@
             delayInAttr.forEach(function (entry) {
 
                 delayInAttributes[entry] = value + 's';
+            });
+            obj.css(delayInAttributes);
+        }
+
+        /**
+         * remove css animations for delay and duration
+         * @param obj
+         * @param animation
+         */
+        function slickRemoveAnimation(obj, animation) {
+            var delayInAttr = [
+                'animation-' + animation,
+                '-webkit-animation-' + animation,
+                '-moz-animation-' + animation,
+                '-o-animation-' + animation,
+                '-ms-animation-' + animation
+            ];
+            var delayInAttributes = {};
+            delayInAttr.forEach(function (entry) {
+
+                delayInAttributes[entry] = '';
             });
             obj.css(delayInAttributes);
         }
@@ -102,6 +125,7 @@
                 if (animationOut) {
                     if (firstSlickItem.length > 0) {
                         if (slickItem.hasClass('slick-current')) {
+
                             slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
 
                             if (delayIn) {
@@ -114,19 +138,24 @@
                             setTimeout(function () {
                                 slickSetAnimationDefault(self, hidden, animationIn, animatedClass);
                                 slickSetAnimationDefault(self, visible, animationOut, animatedClass);
-
                                 if (delayOut) {
                                     slickAddAnimation(self, 'delay', delayOut);
                                 }
                                 if (durationOut) {
                                     slickAddAnimation(self, 'duration', durationOut);
                                 }
+                                setTimeout(function() {
+                                    slickRemoveAnimation(self, 'delay');
+                                    slickRemoveAnimation(self, 'duration');
+                                }, getTimeout(delayOut, durationOut));
+
                             }, getTimeout(delayIn, durationIn));
                         }
                     }
 
                     currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
                         if (slickItem.hasClass('slick-current')) {
+
                             slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
 
                             if (delayIn) {
@@ -146,6 +175,11 @@
                                 if (durationOut) {
                                     slickAddAnimation(self, 'duration', durationOut);
                                 }
+                                setTimeout(function() {
+                                    slickRemoveAnimation(self, 'delay');
+                                    slickRemoveAnimation(self, 'duration');
+                                }, getTimeout(delayOut, durationOut));
+
                             }, getTimeout(delayIn, durationIn));
                         }
                     });
@@ -154,9 +188,8 @@
                         slickSetAnimationDefault(self, hidden, animationOut, animatedClass, true);
 
                     });
-                }
+                } else {
 
-                else {
                     if (firstSlickItem.length > 0) {
                         if (slickItem.hasClass('slick-current')) {
                             slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
@@ -166,12 +199,12 @@
                             }
                             if (durationIn) {
                                 slickAddAnimation(self, 'duration', durationIn);
+
                             }
                         }
                     }
 
                     currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
-
                         if (slickItem.hasClass('slick-current')) {
                             slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
 
@@ -183,6 +216,7 @@
                             }
                         }
                     });
+
 
                     currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
                         slickSetAnimationDefault(self, hidden, animationIn, animatedClass, true);
