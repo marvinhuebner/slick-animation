@@ -74,6 +74,6 @@ Developed by Marvin Hübner
 - [@Marvin_Huebner](https://twitter.com/Marvin_Huebner)
 - [Github Profile](https://github.com/marvinhuebner)
 
-Contributed by Marvin Hübner
+Contributed by Georg Dümmler
 - [@gerchomat](https://twitter.com/gerchomat)
 - [Github Profile](https://github.com/gerchomat)
