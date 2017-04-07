@@ -1,196 +1,80 @@
 /*
  slick-animation.js
 
- Version: 0.3.3 Beta
- Author: Marvin Hübner
+ Version: 1.0.0 Beta
+ Author: Marvin Hübner, Georg Dümmler
  Docs: https://github.com/marvinhuebner/slick-animation
  Repo: https://github.com/marvinhuebner/slick-animation
  */
-
 (function ($) {
     $.fn.slickAnimation = function () {
         var currentSlickSlider = $(this);
 
-        var slickItems = currentSlickSlider.find('.slick-list .slick-track > div');
-        var firstSlickItem = currentSlickSlider.find('[data-slick-index="0"]');
 
-        var animatedClass = 'animated';
-        var visible = {opacity: '1'};
-        var hidden = {opacity: '0'};
+        function animateSlide(slide) {
+            slide.find('[data-animation-in]').each(function (i) {
+                var element = $(this);
 
-        /**
-         * function for setting animationIn and animationOut class
-         * @param obj
-         * @param type
-         * @param animationIn
-         * @param animatedClass
-         * @param visibility
-         */
+                var animationIn = element.attr('data-animation-in');
+                var animationOut = element.attr('data-animation-out');
 
-        function slickSetAnimationDefault(obj, type, animationIn, animatedClass, visibility) {
-            visibility = typeof visibility !== 'undefined' ? visibility : false;
+                var delaySecondsIn = parseInt(element.attr('data-delay-in'));
+                var delaySecondsOut = parseInt(element.attr('data-delay-out'));
 
-            if (type['opacity'] == 1) {
-                obj.addClass(animationIn);
-                obj.addClass(animatedClass);
-            } else {
-                obj.removeClass(animationIn);
-                obj.removeClass(animatedClass);
-            }
+                var durationSecondsIn = parseInt(element.attr('data-duration-in'));
+                var durationSecondsOut = parseInt(element.attr('data-duration-out'));
 
-            if (visibility) obj.css(type);
-        }
+                if (isNaN(delaySecondsIn)) delaySecondsIn = 0;
+                if (isNaN(delaySecondsOut)) delaySecondsOut = 0;
+                if (isNaN(durationSecondsIn)) durationSecondsIn = 0;
+                if (isNaN(durationSecondsOut)) durationSecondsOut = 0;
 
-        /**
-         * get timeout when delay, duration, delay and duration is set
-         * @param delayIn
-         * @param durationIn
-         * @returns {number}
-         */
+                element.css('animation', animationIn + ' ' + durationSecondsIn + 's ' + delaySecondsIn + 's');
+                element.css('animation-fill-mode', 'both');
 
-        function getTimeout(delayIn, durationIn) {
-            if (delayIn) {
-                return delayIn * 1000 + 1000;
+                element.finish();
+                element.one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                    function (e) {
+                        e.preventDefault();
+                        $(this).css({'opacity': 1});
 
-            } else if (durationIn) {
-                return durationIn * 1000;
+                        element.finish();
+                        element.css('animation', animationOut + ' ' + durationSecondsOut + 's ' + delaySecondsOut + 's');
+                        $(this).one('webkitAnimationEnd oanimationend msAnimationEnd animationend',
+                            function (ev) {
+                                ev.preventDefault();
+                                $(this).css({'opacity': 0});
+                                element.finish();
 
-            } else if ((delayIn) || (durationIn)) {
-                return (delayIn * 1000) + (durationIn * 1000);
-            }
-            return 1000;
-        }
-
-        /**
-         * add css animations for delay and duration
-         * @param obj
-         * @param animation
-         * @param value
-         */
-
-        function slickAddAnimation(obj, animation, value) {
-            var delayInAttr = [
-                'animation-' + animation,
-                '-webkit-animation-' + animation,
-                '-moz-animation-' + animation,
-                '-o-animation-' + animation,
-                '-ms-animation-' + animation
-            ];
-            var delayInAttributes = {};
-            delayInAttr.forEach(function (entry) {
-
-                delayInAttributes[entry] = value + 's';
+                                if (i == 0) currentSlickSlider.slick('slickNext');
+                            });
+                    });
             });
-            obj.css(delayInAttributes);
         }
 
-        slickItems.each(function () {
-            var slickItem = $(this);
+        function removeAnimation(slide) {
+            slide.find('[data-animation-in]').each(function () {
+                var element = $(this);
 
-            slickItem.find('[data-animation-in]').each(function () {
-                var self = $(this);
-
-                self.css(hidden);
-
-                var animationIn = self.attr('data-animation-in');
-                var animationOut = self.attr('data-animation-out');
-                var delayIn = self.attr('data-delay-in');
-                var durationIn = self.attr('data-duration-in');
-                var delayOut = self.attr('data-delay-out');
-                var durationOut = self.attr('data-duration-out');
-
-                if (animationOut) {
-                    if (firstSlickItem.length > 0) {
-                        if (slickItem.hasClass('slick-current')) {
-                            slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
-
-                            if (delayIn) {
-                                slickAddAnimation(self, 'delay', delayIn);
-                            }
-                            if (durationIn) {
-                                slickAddAnimation(self, 'duration', durationIn);
-                            }
-
-                            setTimeout(function () {
-                                slickSetAnimationDefault(self, hidden, animationIn, animatedClass);
-                                slickSetAnimationDefault(self, visible, animationOut, animatedClass);
-
-                                if (delayOut) {
-                                    slickAddAnimation(self, 'delay', delayOut);
-                                }
-                                if (durationOut) {
-                                    slickAddAnimation(self, 'duration', durationOut);
-                                }
-                            }, getTimeout(delayIn, durationIn));
-                        }
-                    }
-
-                    currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
-                        if (slickItem.hasClass('slick-current')) {
-                            slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
-
-                            if (delayIn) {
-                                slickAddAnimation(self, 'delay', delayIn);
-                            }
-                            if (durationIn) {
-                                slickAddAnimation(self, 'duration', durationIn);
-                            }
-
-                            setTimeout(function () {
-                                slickSetAnimationDefault(self, hidden, animationIn, animatedClass);
-                                slickSetAnimationDefault(self, visible, animationOut, animatedClass);
-
-                                if (delayOut) {
-                                    slickAddAnimation(self, 'delay', delayOut);
-                                }
-                                if (durationOut) {
-                                    slickAddAnimation(self, 'duration', durationOut);
-                                }
-                            }, getTimeout(delayIn, durationIn));
-                        }
-                    });
-
-                    currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
-                        slickSetAnimationDefault(self, hidden, animationOut, animatedClass, true);
-
-                    });
-                }
-
-                else {
-                    if (firstSlickItem.length > 0) {
-                        if (slickItem.hasClass('slick-current')) {
-                            slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
-
-                            if (delayIn) {
-                                slickAddAnimation(self, 'delay', delayIn);
-                            }
-                            if (durationIn) {
-                                slickAddAnimation(self, 'duration', durationIn);
-                            }
-                        }
-                    }
-
-                    currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
-
-                        if (slickItem.hasClass('slick-current')) {
-                            slickSetAnimationDefault(self, visible, animationIn, animatedClass, true);
-
-                            if (delayIn) {
-                                slickAddAnimation(self, 'delay', delayIn);
-                            }
-                            if (durationIn) {
-                                slickAddAnimation(self, 'duration', durationIn);
-                            }
-                        }
-                    });
-
-                    currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
-                        slickSetAnimationDefault(self, hidden, animationIn, animatedClass, true);
-                    });
-                }
-
+                element.css({'opacity': 0});
+                element.off();
+                element.finish();
+                element.css('animation', '');
             });
+        }
+
+        var firstSlide = currentSlickSlider.find('.slick-current');
+        animateSlide(firstSlide, currentSlickSlider);
+
+        currentSlickSlider.on('afterChange', function (event, slick, currentSlider) {
+            removeAnimation(currentSlickSlider);
+            var slide = currentSlickSlider.find('[data-slick-index="' + currentSlider + '"]');
+            animateSlide(slide, currentSlickSlider);
         });
+        currentSlickSlider.on('beforeChange', function (event, slick, currentSlider) {
+            removeAnimation(currentSlickSlider);
+        });
+
         return this;
     }
 })(jQuery);

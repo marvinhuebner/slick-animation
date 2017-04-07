@@ -11,7 +11,7 @@
 
 ### Version
 
-0.3.3 Beta
+1.0.0 Stable
 
 ### Installation
 
@@ -73,3 +73,7 @@ If you find a bug, please report it [here on Github!] (https://github.com/marvin
 Developed by Marvin Hübner
 - [@Marvin_Huebner](https://twitter.com/Marvin_Huebner)
 - [Github Profile](https://github.com/marvinhuebner)
+
+Contributed by Marvin Hübner
+- [@gerchomat](https://twitter.com/gerchomat)
+- [Github Profile](https://github.com/gerchomat)

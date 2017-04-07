@@ -1,9 +1,10 @@
 {
   "name": "slick-animation",
-  "version": "0.3.3",
+  "version": "1.0.0",
   "description": "slick-animation is a jquery plugin to animate elements in the slick slider",
   "authors": [
-    "Marvin Huebner"
+    "Marvin Huebner",
+    "Georg Dümmler"
   ],
   "main": [
     "slick-animation.js"
