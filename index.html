@@ -73,15 +73,15 @@
         <div class="slick-slider-init">
             <div class="slick-item">
 
-                <div class="slider-headline" data-animation-in="fadeIn" data-delay-in="2" data-animation-out="bounceOutUp">
+                <div class="slider-headline" data-animation-in="fadeIn" data-delay-in="2" data-duration-in="2" data-animation-out="bounceOutUp" data-duration-out="2">
                     <h1>Headline BounceInDown</h1>
                 </div>
 
-                <div class="slider-description" data-animation-in="fadeIn">
+                <div class="slider-description" data-animation-in="fadeIn" data-duration-in="2">
                     <h3>Slide 1</h3>
                 </div>
 
-                <div class="slider-content" data-animation-in="bounceInUp"  >
+                <div class="slider-content" data-animation-in="bounceInUp" data-duration-in="2">
                     <p>Nullam quis risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue.
                         Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Maecenas sed diam
                         eget risus varius blandit.</p>
@@ -90,11 +90,11 @@
             </div>
             <div class="slick-item">
 
-                <div class="slider-headline" data-animation-in="bounceInDown">
+                <div class="slider-headline" data-animation-in="bounceInDown" data-duration-in="2">
                     <h1>Headline FadeIn</h1>
                 </div>
 
-                <div class="slider-description" data-animation-in="fadeIn">
+                <div class="slider-description" data-animation-in="fadeIn" data-duration-in="2">
                     <h3>Slide 2</h3>
                 </div>
             </div>
@@ -112,10 +112,7 @@
 
     $(document).ready(function () {
 
-        sliderInit.slick({
-            autoplay: true,
-            autoplaySpeed: 9000
-        });
+        sliderInit.slick();
 
         sliderInit.slickAnimation();
     });
